@@ -1,4 +1,4 @@
-<h1 align="center">🎉 FluxxtoberFest 2026 🎨</h1>
+<h1 align="center">🎉 FluxxtoberFest 2025 🎨</h1>
 
 <p align="center">
   <em>A fusion of design, development, and 3D innovation — where creativity meets technology.</em>
@@ -111,10 +111,10 @@ We’ll review it and merge your awesome work!
 
 ## 🌈 Join the Movement
 
-FluxxtoberFest 2026 isn’t just an event —  
+FluxxtoberFest 2025 isn’t just an event —  
 it’s a celebration of **community, creativity, and code**.  
 
-> 💬 **FluxxtoberFest 2026 is calling you — are you ready to build the future?**
+> 💬 **FluxxtoberFest 2025 is calling you — are you ready to build the future?**
 
 ---
 
@@ -125,5 +125,5 @@ it’s a celebration of **community, creativity, and code**.
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/Fluxxiondev">Fluxxiondev</a> and the FluxxtoberFest Community.
+  Made with ❤️ by <a href="https://github.com/Fluxxiondev">Fluxxiondev</a> and the Fluxxion Community.
 </p>
