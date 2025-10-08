@@ -63,23 +63,23 @@ You can define these colors in your **CSS variables** for easy use:
   --color-purple: #512B58;
 }
 ```
+---
 
-───────────────────────────────
-📘 REFERENCE
+## 📘 **REFERENCE**
 
-This color palette is inspired by:
-ColorHunt.co Palette F1F3F4  
-(Link: https://colorhunt.co/palette/f1f3f479bac12a7886512b58)
+This color palette is inspired by  
+🎨 **[ColorHunt.co Palette F1F3F4](https://colorhunt.co/palette/f1f3f479bac12a7886512b58)**
 
-───────────────────────────────
-🤝 CONTRIBUTOR REMINDER
+---
 
-✅ Before submitting a Pull Request:
-   - Double-check that you’re using ONLY the colors from this palette.
-   - Avoid introducing new color codes unless approved.
+## 🤝 **CONTRIBUTOR REMINDER**
 
-Let’s build something beautiful together! ✨
-───────────────────────────────
+✅ **Before submitting a Pull Request:**
+- Double-check that you’re using **only the colors** from this palette.  
+- Avoid introducing **new color codes** unless approved by maintainers.
 
+💬 Consistency helps our website stay clean, modern, and professional.  
 
+---
 
+✨ **Let’s build something beautiful together!** ✨
