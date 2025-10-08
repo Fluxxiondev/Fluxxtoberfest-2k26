@@ -71,5 +71,4 @@ Let’s build something beautiful together! ✨
 ───────────────────────────────
 
 
-
-
+![image alt](https://github.com/Fluxxiondev/Fluxxtoberfest-2k26/blob/3f2495e6c4a78650b4ce6888069e45acca00f585/color-pallete-1.1.png)
