@@ -45,15 +45,6 @@ Following this palette ensures that our site maintains a **cohesive and polished
 
 
 
-
-![image alt](https://github.com/Fluxxiondev/Fluxxtoberfest-2k26/blob/b096219e4abe594273bcea8d4b33b4db90287fa6/color-pallete-1.png)
-
-
-
-![image alt](https://github.com/Fluxxiondev/Fluxxtoberfest-2k26/blob/3f2495e6c4a78650b4ce6888069e45acca00f585/color-pallete-1.1.png)
-
-
-
 You can define these colors in your **CSS variables** for easy use:
 
 ```css
@@ -63,6 +54,7 @@ You can define these colors in your **CSS variables** for easy use:
   --color-teal-dark: #2A7886;
   --color-purple: #512B58;
 }
+```
 
 ───────────────────────────────
 📘 REFERENCE
@@ -80,4 +72,14 @@ ColorHunt.co Palette F1F3F4
 
 Let’s build something beautiful together! ✨
 ───────────────────────────────
+
+
+
+
+![image alt](https://github.com/Fluxxiondev/Fluxxtoberfest-2k26/blob/b096219e4abe594273bcea8d4b33b4db90287fa6/color-pallete-1.png)
+
+
+
+![image alt](https://github.com/Fluxxiondev/Fluxxtoberfest-2k26/blob/3f2495e6c4a78650b4ce6888069e45acca00f585/color-pallete-1.1.png)
+
 
