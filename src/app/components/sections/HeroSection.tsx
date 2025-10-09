@@ -1,184 +1,256 @@
+/* filepath: c:\Users\butta\OneDrive\Desktop\FluxxtoberFest-2k26\src\app\components\sections\HeroSection.tsx */
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "../ui/btn"
 import SplineEmbed from "./spline-embed"
 
-const PHRASES = [
-  "Where Creativity Meets Technology",
-  "Build the Future Together",
-  "Code • Design • Innovate"
-]
-
 export default function Hero() {
-  const [index, setIndex] = useState(0)
-  const [subIndex, setSubIndex] = useState(0)
-  const [deleting, setDeleting] = useState(false)
-  const [blink, setBlink] = useState(true)
+  const [copied, setCopied] = useState(false)
 
-  const current = useMemo(() => PHRASES[index], [index])
+  const copyEmail = async () => {
+    const email = "fluxxtoberfest@gmail.com"
+    try {
+      await navigator.clipboard.writeText(email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+      console.log("Email copied to clipboard")
+    } catch (err) {
+      console.error("Failed to copy email: ", err)
+    }
+  }
 
   useEffect(() => {
-    const blinkInterval = setInterval(() => setBlink((b) => !b), 500)
-    return () => clearInterval(blinkInterval)
+    // Add particle positions dynamically
+    const particles = document.querySelectorAll(".particle")
+    particles.forEach((particle, index) => {
+      const left = Math.random() * 100
+      const delay = Math.random() * 20
+      ;(particle as HTMLElement).style.left = `${left}%`
+      ;(particle as HTMLElement).style.animationDelay = `${delay}s`
+    })
   }, [])
 
-  useEffect(() => {
-    const speed = deleting ? 50 : 100
-    const timeout = setTimeout(() => {
-      setSubIndex((prev) => prev + (deleting ? -1 : 1))
-    }, speed)
-
-    if (!deleting && subIndex === current.length) {
-      clearTimeout(timeout)
-      const hold = setTimeout(() => setDeleting(true), 1500)
-      return () => clearTimeout(hold)
-    }
-
-    if (deleting && subIndex === 0) {
-      clearTimeout(timeout)
-      setDeleting(false)
-      setIndex((prev) => (prev + 1) % PHRASES.length)
-      return
-    }
-
-    return () => clearTimeout(timeout)
-  }, [subIndex, deleting, current])
-
   return (
-    <section className="relative min-h-screen flex items-center pt-16">
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+    <main className="relative">
+      <section id="hero-section" className="relative w-full overflow-hidden hero-section-container">
+        {/* Space Background Layer */}
+        <div className="space-bg pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+        {/* Floating Particles */}
+        <div className="floating-particles pointer-events-none absolute inset-0" aria-hidden="true">
+          {[...Array(15)].map((_, i) => (
+            <div key={i} className="particle"></div>
+          ))}
+        </div>
+
+        {/* Shooting Stars */}
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-cyan-400/40 rounded-full animate-float"
+            className="shooting-star pointer-events-none absolute"
             style={{
-              left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 4}s`
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${i * 3}s`,
+              animationDuration: `${4 + Math.random() * 2}s`,
             }}
+            aria-hidden="true"
           />
         ))}
-      </div>
 
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-2">
-          {/* Left: Content */}
-          <div className="space-y-6 lg:space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 glass-cyber rounded-full px-4 py-2 text-sm animate-cyber-glow">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        {/* Enhanced Nebula Glows */}
+        <div
+          className="nebula-glow pointer-events-none absolute"
+          style={{ top: "15%", left: "10%" }}
+          aria-hidden="true"
+        />
+        <div
+          className="nebula-glow pointer-events-none absolute"
+          style={{
+            top: "60%",
+            right: "8%",
+            background: "radial-gradient(circle, rgba(42, 120, 134, 0.18) 0%, rgba(81, 43, 88, 0.12) 40%, transparent 70%)",
+            animationDelay: "3s",
+            animationDuration: "12s",
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Galaxy Spiral */}
+        <div className="galaxy-spiral pointer-events-none absolute inset-0" aria-hidden="true"></div>
+
+        {/* Professional Background blur effect */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 blur-[100px]"
+          style={{ background: "var(--purple-glow)" }}
+        ></div>
+
+        {/* Main Content Container - Perfect Alignment */}
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Professional Badge - Centered */}
+          <div className="flex justify-center mb-12">
+            <Link
+              href="#about"
+              className="group inline-flex items-center gap-2 rounded-full glass-corporate px-4 py-2 text-sm backdrop-blur-md transition-all duration-300 hover:scale-105 animate-fade-in-down"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-gradient-to-r from-teal-light to-teal-dark">
+                <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-teal-light opacity-75"></span>
               </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent font-medium">
-                #FluxxtoberFest 2025 • Live Now
+              <span className="text-xs font-semibold text-purple bg-gradient-to-r from-teal-light to-purple bg-clip-text text-transparent">
+                NEW
               </span>
-            </div>
-
-            {/* Main Heading */}
-            <div className="space-y-3 lg:space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-breathe">
-                  FluxxtoberFest
-                </span>
-              </h1>
-              
-              <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-semibold h-12 sm:h-14 lg:h-16 flex items-center">
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
-                  {current.slice(0, subIndex)}
-                </span>
-                <span className={`ml-1 inline-block w-0.5 lg:w-1 h-6 sm:h-7 lg:h-8 xl:h-10 bg-gradient-to-b from-cyan-400 to-blue-500 ${blink ? "opacity-100" : "opacity-0"} transition-opacity`} />
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-base sm:text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl">
-              Join the ultimate celebration of open source development. Experience cutting-edge 3D web technologies, 
-              collaborate with amazing developers, and build the future of interactive web experiences.
-            </p>
-
-            {/* Stats */}
-            <div className="flex flex-wrap gap-4 sm:gap-6 py-4">
-              <div className="glass-cyber rounded-xl p-3 sm:p-4 text-center group hover:scale-105 transition-all duration-300 min-w-[100px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  1000+
-                </div>
-                <div className="text-xs sm:text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                  Contributors
-                </div>
-              </div>
-              <div className="glass-cyber rounded-xl p-3 sm:p-4 text-center group hover:scale-105 transition-all duration-300 min-w-[100px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                  50+
-                </div>
-                <div className="text-xs sm:text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                  Projects
-                </div>
-              </div>
-              <div className="glass-cyber rounded-xl p-3 sm:p-4 text-center group hover:scale-105 transition-all duration-300 min-w-[100px]">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent">
-                  24/7
-                </div>
-                <div className="text-xs sm:text-sm text-white/60 group-hover:text-white/80 transition-colors">
-                  Support
-                </div>
-              </div>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-              <Button className="aurora-bg text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:scale-105 transition-all duration-300 shadow-lg animate-cyber-glow">
-                <Link href="#get-started" className="flex items-center gap-2">
-                  <span className="text-lg sm:text-xl">🤖</span>
-                  <span className="text-sm sm:text-base">Start Contributing</span>
-                </Link>
-              </Button>
-              
-              <Link
-                href="#explore"
-                className="glass-cyber rounded-full px-6 sm:px-8 py-3 sm:py-4 text-white/80 hover:text-white transition-all duration-300 inline-flex items-center gap-2 group text-sm sm:text-base"
+              <span className="text-light/90 font-medium">FluxxtoberFest 2025 is live!</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-teal-light transition-transform duration-300 group-hover:translate-x-1"
               >
-                <span>Explore Projects</span>
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </Link>
+          </div>
+
+          {/* Main Content Grid - Perfect Responsive Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col space-y-8 text-center lg:text-left">
+              
+              {/* Main Heading */}
+              <div className="space-y-4 animate-fade-in-up">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-5xl font-bold leading-tight tracking-tight">
+                  <span className="block text-light mb-2">We help developers</span>
+                  <span className="block text-light mb-2">build the future of</span>
+                  <span className="block text-gradient-corporate font-extrabold italic">
+                    open source
+                  </span>
+                </h1>
+              </div>
+
+     
+
+              {/* Description */}
+              <p className="text-base sm:text-lg lg:text-xl text-light/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                Join the world's most innovative open source celebration. Experience cutting-edge 3D web technologies, 
+                collaborate with amazing developers, and build the future of interactive web experiences.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center lg:items-start animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+                <Button className="btn-corporate group relative overflow-hidden rounded-full px-8 py-4 text-base font-semibold transition-all duration-300 hover:shadow-2xl">
+                  <span className="relative z-10 text-light">Start Contributing</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-light to-purple opacity-0 transition-opacity duration-300 group-hover:opacity-20"></div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="ml-2 transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </Button>
+
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="group flex items-center gap-3 rounded-full glass-corporate px-6 py-4 text-base font-medium text-light/90 transition-all duration-300 hover:text-light hover:scale-105"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`transition-colors duration-300 ${copied ? 'text-teal-light' : 'text-purple'}`}
+                  >
+                    {copied ? (
+                      <path d="M20 6 9 17l-5-5" />
+                    ) : (
+                      <>
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                      </>
+                    )}
+                  </svg>
+                  <span className="font-mono text-sm">
+                    {copied ? 'Copied!' : 'fluxxtoberfest@gmail.com'}
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Column: 3D Model */}
+            <div className="flex justify-center lg:justify-end items-center">
+              <div className="w-full max-w-lg lg:max-w-none">
+                <SplineEmbed
+                  scene="https://my.spline.design/r4xbotcopy-FeOqp5XKSCum1rNJW3YGcHrO/scene.splinecode"
+                  className="h-80 sm:h-96 lg:h-[500px] w-full animate-professional-glow"
+                />
+              </div>
             </div>
           </div>
-
-          {/* Right: 3D Model */}
-          <div className="relative lg:order-last">
-            <SplineEmbed 
-              scene="https://my.spline.design/r4xbotcopy-FeOqp5XKSCum1rNJW3YGcHrO/scene.splinecode" 
-              className="animate-float"
-            />
-            
-            {/* Enhanced decorative elements matching the robot */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-2xl animate-pulse-glow"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-r from-blue-500/15 to-purple-600/15 rounded-full blur-3xl animate-pulse-glow" style={{animationDelay: "1.5s"}}></div>
-            <div className="absolute top-1/2 -right-3 w-16 h-16 bg-gradient-to-r from-cyan-300/25 to-cyan-500/25 rounded-full blur-xl animate-drift"></div>
-            
-            {/* Floating tech elements */}
-            <div className="absolute top-6 left-3 w-2 h-2 bg-cyan-400 rounded-full animate-ping" style={{animationDelay: "0.5s"}}></div>
-            <div className="absolute bottom-8 right-6 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{animationDelay: "1s"}}></div>
-            <div className="absolute top-1/4 left-6 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping" style={{animationDelay: "2s"}}></div>
-          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-white/50">
-          <span className="text-xs sm:text-sm">Scroll to explore</span>
-          <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-0.5 h-2 bg-white/50 rounded-full mt-1.5 animate-bounce"></div>
-          </div>
-        </div>
+      {/* Professional Curved Bottom Section */}
+      <div className="relative w-full h-32 sm:h-40 lg:h-48 overflow-hidden">
+        <svg 
+          className="absolute bottom-0 left-0 w-full h-full" 
+          viewBox="0 0 1200 320" 
+          fill="none" 
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0,160 C300,220 600,280 900,240 C1050,210 1150,180 1200,160 L1200,320 L0,320 Z" 
+            fill="url(#professionalGradient)"
+            className="drop-shadow-2xl"
+          />
+          <defs>
+            <linearGradient id="professionalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="var(--color-light)" stopOpacity="0.9" />
+              <stop offset="50%" stopColor="var(--color-teal-light)" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="var(--color-light)" stopOpacity="0.95" />
+            </linearGradient>
+          </defs>
+        </svg>
+        
+        {/* Enhanced glow effects */}
+        <div 
+          className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-24 blur-2xl opacity-40"
+          style={{
+            background: 'radial-gradient(ellipse 70% 50% at 50% 100%, var(--color-teal-light) 0%, transparent 70%)'
+          }}
+        />
+        
+        <div 
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-80 h-16 blur-3xl opacity-30"
+          style={{
+            background: 'radial-gradient(ellipse, var(--color-purple) 0%, transparent 70%)'
+          }}
+        />
       </div>
-    </section>
+    </main>
   )
 }

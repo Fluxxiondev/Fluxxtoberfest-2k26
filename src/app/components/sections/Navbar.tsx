@@ -46,7 +46,7 @@ export default function Navbar() {
           >
             Sign In
           </Link>
-          <Button className="btn-corporate text-black font-semibold px-6 py-2 rounded-lg">
+          <Button className="btn-corporate text-white font-semibold px-6 py-2 rounded-lg">
             Get Started
           </Button>
         </div>
@@ -98,7 +98,7 @@ export default function Navbar() {
               </Link>
               <Button
                 onClick={() => setOpen(false)}
-                className="btn-corporate text-black font-semibold px-6 py-2 rounded-lg"
+                className="btn-corporate text-white font-semibold px-6 py-2 rounded-lg"
               >
                 Get Started
               </Button>
