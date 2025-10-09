@@ -1,26 +1,417 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Updated Professional Color Palette */
+  --color-light: #F1F3F4;
+  --color-teal-light: #79BAC1;
+  --color-teal-dark: #2A7886;
+  --color-purple: #512B58;
+  
+  /* Legacy support */
+  --bg-primary: #0A0D1A;
+  --bg-secondary: #141B2D;
+  --bg-tertiary: #1E2A42;
+  --accent-primary: var(--color-teal-light);
+  --accent-secondary: var(--color-teal-dark);
+  --accent-tertiary: var(--color-purple);
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8C5D1;
+  --text-muted: #8A9BA8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --purple-glow: radial-gradient(50% 50% at 50% 50%, var(--color-purple) 0%, rgba(10, 10, 10, 0) 100%);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-primary: var(--color-teal-dark);
+  --color-secondary: var(--bg-secondary);
+  --color-accent: var(--color-teal-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Professional Color System */
+  --color-light: #F1F3F4;
+  --color-teal-light: #79BAC1;
+  --color-teal-dark: #2A7886;
+  --color-purple: #512B58;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Professional Background System */
+body {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(121, 186, 193, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(42, 120, 134, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(81, 43, 88, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, 
+      var(--bg-primary) 0%, 
+      var(--bg-secondary) 35%, 
+      var(--bg-tertiary) 65%, 
+      var(--bg-secondary) 100%
+    );
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Enhanced Space Animation Styles */
+.space-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(2px 2px at 20px 30px, rgba(121, 186, 193, 0.8), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(42, 120, 134, 0.6), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(241, 243, 244, 0.9), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(121, 186, 193, 0.4), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(81, 43, 88, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 200px 150px;
+  animation: twinkle 4s ease-in-out infinite alternate, moveStars 200s linear infinite;
+  z-index: 1;
+}
+
+.space-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(1px 1px at 25px 5px, rgba(241, 243, 244, 0.5), transparent),
+    radial-gradient(1px 1px at 50px 25px, rgba(121, 186, 193, 0.4), transparent),
+    radial-gradient(1px 1px at 125px 20px, rgba(42, 120, 134, 0.6), transparent),
+    radial-gradient(1px 1px at 190px 90px, rgba(81, 43, 88, 0.3), transparent);
+  background-repeat: repeat;
+  background-size: 250px 200px;
+  animation: twinkle 3s ease-in-out infinite alternate-reverse, moveStars 150s linear infinite reverse;
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, var(--color-teal-light) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+  opacity: 0;
+}
+
+.particle:nth-child(odd) {
+  animation-direction: reverse;
+  animation-duration: 20s;
+  background: radial-gradient(circle, var(--color-purple) 0%, transparent 70%);
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, var(--color-teal-light), transparent);
+  border-radius: 50%;
+  animation: shootingStar 3s linear infinite;
+  opacity: 0;
+}
+
+.nebula-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(121, 186, 193, 0.15) 0%, rgba(42, 120, 134, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  animation: nebulaPulse 8s ease-in-out infinite alternate;
+  filter: blur(40px);
+  z-index: 1;
+}
+
+.galaxy-spiral {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 30%;
+  right: -200px;
+  background: conic-gradient(from 0deg, transparent, rgba(121, 186, 193, 0.2), transparent, rgba(42, 120, 134, 0.3), transparent);
+  border-radius: 50%;
+  animation: galaxyRotate 30s linear infinite;
+  filter: blur(20px);
+  z-index: 1;
+}
+
+/* Professional Glass Morphism with New Colors */
+.glass-corporate {
+  background: linear-gradient(135deg, 
+    rgba(241, 243, 244, 0.08) 0%, 
+    rgba(121, 186, 193, 0.03) 100%
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(121, 186, 193, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(81, 43, 88, 0.12),
+    inset 0 1px 0 rgba(241, 243, 244, 0.05);
+}
+
+.glass-corporate:hover {
+  background: linear-gradient(135deg, 
+    rgba(241, 243, 244, 0.12) 0%, 
+    rgba(121, 186, 193, 0.06) 100%
+  );
+  border-color: rgba(42, 120, 134, 0.3);
+  box-shadow: 
+    0 12px 48px rgba(81, 43, 88, 0.18),
+    inset 0 1px 0 rgba(241, 243, 244, 0.08),
+    0 0 0 1px rgba(121, 186, 193, 0.1);
+}
+
+/* Professional Text Effects with New Colors */
+.text-gradient-corporate {
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-light) 0%,
+    var(--color-teal-dark) 50%,
+    var(--color-purple) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, 
+    rgba(241, 243, 244, 0.9) 0%, 
+    var(--color-teal-light) 50%, 
+    rgba(241, 243, 244, 0.9) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Professional Button Styles with New Colors */
+.btn-corporate {
+  background: linear-gradient(135deg, var(--color-teal-dark), var(--color-purple));
+  border: none;
+  box-shadow: 
+    0 4px 20px rgba(42, 120, 134, 0.25),
+    inset 0 1px 0 rgba(241, 243, 244, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-corporate:hover {
+  background: linear-gradient(135deg, var(--color-purple), var(--color-teal-light));
+  box-shadow: 
+    0 8px 30px rgba(42, 120, 134, 0.4),
+    inset 0 1px 0 rgba(241, 243, 244, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Professional Animations */
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes moveStars {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-2000px); }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(300px) translateY(300px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px) translateY(300px) scale(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0px) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(100px) rotate(360deg);
+  }
+}
+
+@keyframes nebulaPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes galaxyRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes professional-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(121, 186, 193, 0.1),
+      0 4px 40px rgba(81, 43, 88, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(121, 186, 193, 0.2),
+      0 8px 60px rgba(81, 43, 88, 0.15);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Animation Classes */
+.animate-professional-glow {
+  animation: professional-glow 4s ease-in-out infinite;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-wave {
+  animation: wave 0.6s ease-in-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-teal-light), var(--color-teal-dark));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--color-teal-dark), var(--color-purple));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Professional hero section alignment fixes */
+.hero-section-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .hero-section-container {
+    padding: 3rem 0;
+  }
 }
