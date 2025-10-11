@@ -1,5 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -23,35 +23,48 @@ html, body {
   perspective: 1800px;
   overflow: hidden;
 }
+
 .carousel {
   position: relative;
   width: 800px;
   height: 400px;
   transform-style: preserve-3d;
-  animation: spin 25s linear infinite;
+  transition: transform 0.3s ease;
 }
 
-@keyframes spin {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(180deg); }
-}
 .card {
   position: absolute;
   width: 260px;
   height: 320px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 150, 136, 0.2);
+  transform-style: preserve-3d;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(0, 150, 136, 0.25);
   border-radius: 18px;
   box-shadow: 0 0 25px rgba(0, 150, 136, 0.25);
   backdrop-filter: blur(10px);
+  transform-origin: center;
   transform-style: preserve-3d;
-  transition: all 0.4s ease;
+  transition: transform 0.25s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 191, 165, 0.4), transparent 70%);
+  opacity: 0;
+  filter: blur(25px);
+  z-index: 0;
+  transition: opacity 0.4s ease;
 }
 
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(0, 150, 136, 0.7);
-  z-index: 10;
+.card-inner:hover .card-glow {
+  opacity: 1;
 }
 .card img {
   width: 100%;
@@ -60,8 +73,9 @@ html, body {
   border-bottom: 2px solid rgba(0, 150, 136, 0.3);
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
-  transition: all 0.4s ease;
-
+  transition: transform 0.4s ease, filter 0.3s ease;
+  z-index: 2;
+  position: relative;
 }
 
 .card h2 {
@@ -70,14 +84,18 @@ html, body {
   margin: 1rem 0 0.5rem;
   text-align: center;
   font-weight: 600;
+  z-index: 2;
+  position: relative;
 }
 
 .card p {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #333;
   text-align: center;
   padding: 0 1rem;
   margin-bottom: 1rem;
+  z-index: 2;
+  position: relative;
 }
 
 .card button {
@@ -91,12 +109,16 @@ html, body {
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  z-index: 2;
+  position: relative;
 }
 
-.card button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 191, 165, 0.7);
+
+.card-inner:hover button,img {
+  transform: scaleX(1.15);
+  box-shadow: 0 0 25px rgba(0, 191, 165, 0.7);
 }
+
 @media (max-width: 1024px) {
   .carousel {
     width: 650px;

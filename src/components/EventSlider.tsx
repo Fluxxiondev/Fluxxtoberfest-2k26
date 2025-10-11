@@ -41,22 +41,78 @@ const EventCarousel = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const total = events.length;
   const angle = 360 / total;
-  const radius = 300; // reduced radius → cards are closer together
+  const radius = 300;
 
-  // Parallax rotation on mouse move
+  // --- Continuous spin animation ---
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window;
-      const rotateY = ((e.clientX - innerWidth / 2) / innerWidth) * 30;
-      const rotateX = ((e.clientY - innerHeight / 2) / innerHeight) * -15;
+    let rotation = 0;
+    let animationFrame: number;
+    let paused = false;
 
-      if (carouselRef.current) {
-        carouselRef.current.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+    const spin = () => {
+      if (!paused && carouselRef.current) {
+        rotation += 0.1;
+        carouselRef.current.style.transform = `rotateY(${rotation}deg)`;
       }
+      animationFrame = requestAnimationFrame(spin);
     };
+    spin();
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    // Pause spin when hovering any card
+    const cards = document.querySelectorAll(".card-inner");
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => (paused = true));
+      card.addEventListener("mouseleave", () => (paused = false));
+    });
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
+
+  // --- Smooth card tilt with easing ---
+  useEffect(() => {
+    const cards = document.querySelectorAll(".card-inner");
+
+    cards.forEach((card) => {
+      let currentX = 0,
+        currentY = 0;
+      let targetX = 0,
+        targetY = 0;
+      let hovering = false;
+      let animationFrame: number;
+
+      const update = () => {
+        currentX += (targetX - currentX) * 0.15;
+        currentY += (targetY - currentY) * 0.15;
+        (card as HTMLElement).style.transform = `
+          rotateX(${currentY}deg)
+          rotateY(${currentX}deg)
+          scale(${hovering ? 1.08 : 1})
+        `;
+        animationFrame = requestAnimationFrame(update);
+      };
+      update();
+
+      card.addEventListener("mousemove", (e: MouseEvent) => {
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        targetX = ((x - centerX) / centerX) * 10; // rotateY
+        targetY = ((y - centerY) / centerY) * -10; // rotateX
+      });
+
+      card.addEventListener("mouseenter", () => {
+        hovering = true;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        hovering = false;
+        targetX = 0;
+        targetY = 0;
+      });
+    });
   }, []);
 
   return (
@@ -70,10 +126,13 @@ const EventCarousel = () => {
               transform: `rotateY(${i * angle}deg) translateZ(${radius}px)`,
             }}
           >
-            <img src={event.src} alt={event.title} />
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-            <button>View More</button>
+            <div className="card-inner">
+              <div className="card-glow"></div>
+              <img src={event.src} alt={event.title} />
+              <h2>{event.title}</h2>
+              <p>{event.description}</p>
+              <button>View More</button>
+            </div>
           </div>
         ))}
       </div>
