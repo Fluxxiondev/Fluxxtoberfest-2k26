@@ -11,7 +11,8 @@ export default function LoadingAnimation({ onComplete }: LoadingAnimationProps) 
   const [currentStep, setCurrentStep] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [showLogo, setShowLogo] = useState(false)
-  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 })
+  // Set a fixed default value so SSR and client match
+  const [dimensions, setDimensions] = useState({ width: 1280, height: 720 })
 
   const steps = [
     { text: "Initializing Systems", icon: "⚡", color: "from-teal-light to-teal-dark" },
@@ -21,7 +22,7 @@ export default function LoadingAnimation({ onComplete }: LoadingAnimationProps) 
     { text: "Welcome to FluxxtoberFest", icon: "🎉", color: "from-teal-light to-purple" }
   ]
 
-  // Handle client-side dimensions safely
+  // Only update dimensions on client after mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setDimensions({
@@ -106,16 +107,16 @@ export default function LoadingAnimation({ onComplete }: LoadingAnimationProps) 
                 key={i}
                 className="absolute w-1 h-1 bg-teal-light/40 rounded-full"
                 initial={{ 
-                  x: (i % 4) * (dimensions.width / 4) + Math.random() * 200,
-                  y: Math.floor(i / 4) * (dimensions.height / 3) + Math.random() * 200,
+                  x: (i % 4) * (dimensions.width / 4) + 100,
+                  y: Math.floor(i / 4) * (dimensions.height / 3) + 100,
                   opacity: 0
                 }}
                 animate={{ 
                   opacity: [0, 0.8, 0],
                   scale: [1, 2, 1],
                   y: [
-                    Math.floor(i / 4) * (dimensions.height / 3) + Math.random() * 200,
-                    Math.floor(i / 4) * (dimensions.height / 3) + Math.random() * 200 - 100
+                    Math.floor(i / 4) * (dimensions.height / 3) + 100,
+                    Math.floor(i / 4) * (dimensions.height / 3) + 0
                   ]
                 }}
                 transition={{
