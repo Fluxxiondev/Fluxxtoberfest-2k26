@@ -1,3 +1,4 @@
+import EventSlider from "@/components/EventSlider";
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -36,6 +37,9 @@ export default function Home() {
   ];
 
   return (
+    <main>
+      <EventSlider />
+    </main>
     <div className="min-h-screen flex flex-col items-center py-20 px-6 relative overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-[#0b1f3f] to-white"></div>
