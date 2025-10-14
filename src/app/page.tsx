@@ -4,6 +4,8 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import Image from "next/image";
+import Navbar from './components/sections/Navbar';
+import HeroSection from './components/sections/HeroSection';
 
 export default function Home() {
   const events = [
@@ -170,5 +172,9 @@ export default function Home() {
         }
       `}</style>
     </div>
+    <>
+      <Navbar />
+      <HeroSection />
+    </>
   );
 }
