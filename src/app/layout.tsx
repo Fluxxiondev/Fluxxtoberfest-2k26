@@ -13,10 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Event Gallery | Open Source Project",
-  description: "A smooth animated event slider built with Next.js + TailwindCSS",
   title: "FluxxtoberFest 2026 - Where Creativity Meets Technology",
-  description: "A fusion of design, development, and 3D innovation. Join the ultimate Hacktoberfest celebration.",
+  description: "A fusion of design, development, and 3D innovation. Join the ultimate Hacktoberfest celebration with cutting-edge 3D web technologies.",
 };
 
 export default function RootLayout({

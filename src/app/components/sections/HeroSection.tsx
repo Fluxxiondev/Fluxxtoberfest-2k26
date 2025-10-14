@@ -100,7 +100,7 @@ export default function Hero() {
               <span className="flex h-2 w-2 rounded-full bg-gradient-to-r from-teal-light to-teal-dark">
                 <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-teal-light opacity-75"></span>
               </span>
-              <span className="text-xs font-semibold text-purple bg-gradient-to-r from-teal-light to-purple bg-clip-text text-transparent">
+                <span className="text-xs font-semibold bg-gradient-to-r from-teal-light to-purple bg-clip-text text-transparent">
                 NEW
               </span>
               <span className="text-light/90 font-medium">FluxxtoberFest 2025 is live!</span>
