@@ -1,11 +1,5 @@
-import Navbar from './components/sections/Navbar';
-import HeroSection from './components/sections/HeroSection';
+import ClientWrapper from './components/client-wrapper'
 
 export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <HeroSection />
-    </>
-  );
+  return <ClientWrapper />
 }
