@@ -1,3 +1,4 @@
+import EventSlider from "@/components/EventSlider";
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -6,6 +7,8 @@ import "swiper/css/autoplay";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import Navbar from './components/sections/Navbar';
+import HeroSection from './components/sections/HeroSection';
 
 export default function Home() {
   const events = [
@@ -36,6 +39,9 @@ export default function Home() {
   ];
 
   return (
+    <main>
+      <EventSlider />
+    </main>
     <div className="min-h-screen flex flex-col items-center py-20 px-6 relative overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 -z-20">
@@ -211,5 +217,9 @@ function TiltCard({ event }: { event: any }) {
         </a>
       </div>
     </div>
+    <>
+      <Navbar />
+      <HeroSection />
+    </>
   );
 }
