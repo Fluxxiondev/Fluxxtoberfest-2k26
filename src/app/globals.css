@@ -1,3 +1,4 @@
+@import 'swiper/css';
 @import "tailwindcss";
 
 :root {
@@ -357,6 +358,12 @@ body {
 /* Animation Classes */
 .animate-professional-glow {
   animation: professional-glow 4s ease-in-out infinite;
+}
+/* globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
 }
 
 .animate-fade-in-down {
