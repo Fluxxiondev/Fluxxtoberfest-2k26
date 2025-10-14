@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 * {
@@ -157,6 +159,14 @@ html, body {
     height: 240px;
 @import 'swiper/css';
 @import "tailwindcss";
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
 
 :root {
   /* Updated Professional Color Palette */
@@ -516,13 +526,117 @@ body {
 .animate-professional-glow {
   animation: professional-glow 4s ease-in-out infinite;
 }
-/* globals.css */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
 .font-orbitron {
   font-family: 'Orbitron', sans-serif;
 }
 
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.35; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+.delay-500 {
+  animation-delay: 0.5s;
+}
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.text-gradient-live {
+  background: linear-gradient(270deg, #1A4E55, #FFFFFF, #1A4E55);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 5s ease infinite;
+}
+.text-gradient-live {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 9%,
+    rgba(53, 142, 149, 1) 21%,
+    rgba(87, 199, 133, 1) 53%,
+    rgba(108, 202, 126, 1) 80%,
+    rgba(125, 205, 120, 1) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.text-gradient-live {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 9%,
+    rgba(53, 142, 149, 1) 21%,
+    rgba(87, 199, 133, 1) 53%,
+    rgba(108, 202, 126, 1) 80%,
+    rgba(125, 205, 120, 1) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.text-gradient-live {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 123, 155, 1) 9%,
+    rgba(53, 142, 149, 1) 21%,
+    rgba(87, 199, 133, 1) 53%,
+    rgba(108, 202, 126, 1) 80%,
+    rgba(125, 205, 120, 1) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.text-gradient-live {
+ background: linear-gradient(90deg,rgba(42, 123, 155, 1) 9%, rgba(53, 142, 149, 1) 32%, rgba(87, 199, 133, 1) 74%, rgba(255, 255, 255, 1) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-move 3s linear infinite;
 .animate-fade-in-down {
   animation: fadeInDown 0.6s ease-out;
 }
